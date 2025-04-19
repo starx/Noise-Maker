@@ -1,0 +1,346 @@
+<div class="page">
+    <div class="navbar">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner">
+            
+                <div class="title">
+                    Noise Generator
+                </div>
+                <div class="right"><a href="/about" class="link">ℹ</a></div>
+            
+        </div>
+    </div>
+    <div class="page-content">
+
+
+        <!-- Header with Help Icon -->
+        <div class="block-title display-flex justify-content-space-between align-items-center">
+            <div>Presets</div>
+        </div>
+        
+        <div id="presetContainer" class="preset-grid">
+            
+            <label class="item-radio item-radio-icon-start item-content">
+                <input type="radio" name="preset-radio" value="reset" onchange="applyPreset(this.value)" checked />
+                <i class="icon icon-radio"></i>
+                <div class="item-inner">
+                  <div class="item-title">None</div>
+                </div>
+            </label>
+          
+            <!-- More... -->
+        </div>
+
+
+
+        <div class="list no-hairlines-md">
+            <ul>
+                <li class="item-content item-input">
+                    <div class="item-inner">
+                        <div class="item-title item-label">Timer</div>
+                        <div class="item-input-wrap">
+                            <select id="timerSelect" onchange="handleTimer()">
+                                <option value="0">Off</option>
+                                <option value="10">10 seconds</option>
+                                <option value="1800">30 minutes</option>
+                                <option value="3600">1 hour</option>
+                                <option value="7200">2 hour</option>
+                                <option value="10800">3 hour</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+
+        
+        <div class="block">
+            
+        </div>
+          
+        <div class="list no-hairlines-md">
+            <ul>
+                <li class="item-content">
+                    <div class="item-inner">
+                        <button class="button button-tonal" onclick="toggleAdvanced()">⚙️ Advanced</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    
+
+        <div id="advancedSection" style="display: none;">
+          
+        <!-- Noise type -->
+        <div class="list no-hairlines-md">
+            <ul>
+                <li class="item-content item-input">
+                    <div class="item-inner">
+                        <div class="item-title item-label">Noise Type</div>
+                        <div class="item-input-wrap">
+                            <select id="noiseType" onchange="debounceChangeNoiseType()">
+                                <option value="none">None</option>
+                                <option value="white">White</option>
+                                <option value="pink">Pink</option>
+                                <option value="brown">Brown</option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="list no-hairlines-md">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Ambience</div>
+                  <div class="item-input-wrap">
+                    <select id="ambientSelect" onchange="updateAmbientSelection()">
+                      <option value="none">None</option>
+                        <option value="river-stream-slow-24091">Stream</option>
+                        <option value="river-stream-medium-68361">Stream +</option>
+                        <option value="birds-light-26052">Birds </option>
+                        <option value="birds-semimedium-296528">Birds +</option>
+                        <option value="field-meadow-51082">Field (Meadow)</option>
+                        <option value="fire-crackling-310285">Fire</option>
+                        <option value="fireplace-6354">Fire +</option>
+                        <option value="hall-people-17006">Hall</option>
+                        <option value="library-236734">Library</option>
+                        <option value="night-bugs-light-7012">Night +</option>
+                        <option value="night-bugs-light-271304">Night ++</option>
+                        <option value="rain-light-217409">Rain +</option>
+                        <option value="rain-medium-208505">Rain ++</option>
+                        <option value="rain-medium-319235">Rain +++</option>
+                        <option value="rain-heavy-257596">Rain ++++</option>
+                        <option value="thunder-light-113219">Thunderstorm</option>
+                        <option value="water-fish-6114">Fish in water</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+            </ul>
+        </div>
+
+        <!-- Reverb -->
+        <div class="block-title display-flex justify-content-space-between align-items-center">
+            <div>Reverb</div>
+            <div class="display-flex align-items-center">
+                <label class="toggle toggle-init mr-2" style="margin-bottom: 0;">
+                    <input type="checkbox" id="reverbToggle" onchange="toggleReverb(this)">
+                    <span class="toggle-icon"></span>
+                </label>
+                <a href="#"
+                    onclick="app.dialog.alert('🎼 Reverb adds spaciousness and depth by simulating echo and reflections.<br><br>Choose a preset to create natural ambience, or upload your own custom space.')"
+                    style="font-size: 18px; text-decoration: none;">❓</a>
+            </div>
+        </div>
+
+        <div class="list no-hairlines-md">
+            <ul>
+
+                <!-- Reverb Preset Dropdown -->
+                <li class="item-content item-input">
+                    <div class="item-inner">
+                        <div class="item-title item-label">Preset</div>
+                        <div class="item-input-wrap">
+                            <select id="reverbSelect" onchange="handleReverbPresetSelectionChanged()">
+                                <option value="none">None</option>
+
+                                <option value="ir-forest-spring-107133">Forest (Spring)</option>
+                                <option value="ir-forest-winter-45794">Forest (winter)</option>
+                                <option value="ir-cave">Cave</option>
+                                <option value="ir-hall-44709">Hall</option>
+                                <option value="ir-car-95159">Car</option>
+                                <option value="ir-tunnel-103041">Tunnel</option>
+                                <option value="ir-church-105010">Church</option>
+                                <option value="ir-garage-artisan-36279">Garage</option>
+                                <option value="ir-store-convenience">Store</option>
+                                <option value="custom">Custom</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Custom File Display -->
+                <li class="item-content">
+                    <div class="item-inner">
+                        <div class="item-title">Custom Reverb File</div>
+                        <div class="item-after" id="selectedCustomReverbFile">None</div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- Hidden File Input (outside list) -->
+        <input type="file" id="customReverbFile" accept="audio/*" onchange="handleCustomReverbFileChanged()"
+            style="display: none;">
+
+
+        <div class="block-title display-flex justify-content-space-between align-items-center">
+            <div>Modulation</div>
+            <div class="display-flex align-items-center">
+                <label class="toggle toggle-init mr-2" style="margin-bottom: 0;">
+                    <input type="checkbox" id="modToggle" onchange="toggleModulation()">
+                    <span class="toggle-icon"></span>
+                </label>
+                <a href="#"
+                    onclick="app.dialog.alert('🎛️ Modulation gently varies the volume over time.<br><br>This creates a natural pulsing or wave-like texture in the sound.')"
+                    style="font-size: 18px; text-decoration: none;">❓</a>
+            </div>
+        </div>
+
+
+        <!-- Modulation Speed Slider -->
+        <div class="list no-hairlines-md">
+            <ul>
+                <li class="item-content item-input">
+                    <div class="item-inner">
+                        <div class="item-title item-label">Mod Speed</div>
+                        <div class="item-input-wrap">
+                            <input type="range" id="modSpeed" min="0.01" max="2" value="0.2" step="0.05"
+                                oninput="updateModSpeed()">
+                            <div class="range-slider-value">Speed: <span id="modSpeedValue">0.2</span> Hz</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Filters -->
+
+        <!-- Header with Help Icon -->
+        <div class="block-title display-flex justify-content-space-between align-items-center">
+            <div>Filters</div>
+            <a href="#"
+                onclick="app.dialog.alert('💡 Low-Pass Filter removes high-frequency noise.<br>💡 High-Pass Filter removes low-frequency rumble.')"
+                style="font-size: 18px; text-decoration: none;">❓</a>
+        </div>
+
+
+        <!-- Grid Layout for Both Sliders -->
+        <div class="grid grid-cols-2 grid-gap">
+
+            <!-- Low-Pass Filter -->
+            <div class="list no-hairlines-md">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Low-Pass</div>
+                            <div class="item-input-wrap">
+                                <input type="range" id="lowpassFrequency" min="100" max="20000" value="8000" step="10"
+                                    oninput="updateLowpassFrequency()">
+                                <div class="range-slider-value"> <span id="freqValue">8000</span> Hz</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- High-Pass Filter -->
+            <div class="list no-hairlines-md">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">High-Pass</div>
+                            <div class="item-input-wrap">
+                                <input type="range" id="highpassFrequency" min="20" max="1000" value="50" step="10"
+                                    oninput="updateHighpassFrequency()">
+                                <div class="range-slider-value"><span id="highpassValue">50</span> Hz</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Header with Help Icon -->
+        <div class="block-title display-flex justify-content-space-between align-items-center">
+            <div>Stereo Controls</div>
+            <a href="#"
+                onclick="app.dialog.alert('🎧 Stereo Width controls how wide the sound feels.<br>🎚️ Pan moves the sound left or right.')"
+                style="font-size: 18px; text-decoration: none;">❓</a>
+        </div>
+
+
+        <div class="grid grid-cols-2 grid-gap">
+
+            <!-- Stereo Width -->
+            <div class="list no-hairlines-md">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Width</div>
+                            <div class="item-input-wrap">
+                                <input type="range" id="widthSlider" min="0" max="1" value="0.4" step="0.01"
+                                    oninput="updateStereoWidth()">
+                                <div class="range-slider-value"><span id="widthValue">0.4</span></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Stereo Pan -->
+            <div class="list no-hairlines-md">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Pan</div>
+                            <div class="item-input-wrap">
+                                <input type="range" id="panSlider" min="-1" max="1" value="0" step="0.01"
+                                    oninput="updateStereoPan()">
+                                <div class="range-slider-value"><span id="panValue">0</span></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Fade Toggle -->
+        <div class="list no-hairlines-md">
+            <ul>
+                <li>
+                    <label class="item-toggle item-content">
+                        <div class="item-inner">
+                            <div class="item-title">Use Fade In/Out</div>
+                        </div>
+                        <div class="item-after">
+                            <label class="toggle toggle-init">
+                                <input type="checkbox" id="fadeToggle" checked>
+                                <span class="toggle-icon"></span>
+                            </label>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom Toolbar with Start/Stop -->
+    <div class="toolbar toolbar-bottom">
+        <div class="toolbar-inner">
+            <div class="grid grid-cols-2 grid-gap" style="width: 100%; padding: 0 1em;">
+                <a class="button button-fill color-green" href="#" onclick="restartPlayingInstantly()">Start</a>
+                <a class="button button-fill color-red" href="#" onclick="stopPlayingInstantly()">
+                    Stop 
+                    <!-- Timer Countdown Display -->
+                    <span id="timerRemaining" style="margin-left: 5px;"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
