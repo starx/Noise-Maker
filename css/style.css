@@ -1,0 +1,45 @@
+html, body, #app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+    /* background: #000; */
+    /* color: #fff; */
+  }
+  
+.app-content { padding: 16px; }
+.page-content {
+  padding-bottom: 60px; /* adjust if your buttons are taller */
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+@media (min-width: 480px) {
+  .preset-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .preset-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.preset-grid .item-content {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+}
+.preset-grid .item-inner {
+  margin-left: 12px;
+}
+
+
+.f7-range { --f7-range-bar-bg-color: #666; --f7-range-knob-bg-color: #fff; }
+.f7-toggle input:checked + .toggle-icon { background-color: #2196f3; }
