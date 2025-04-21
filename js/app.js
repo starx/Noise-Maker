@@ -9,9 +9,9 @@ const getApp = () => {
           url: 'ui.html',
           on: {
             pageAfterIn() {
-              if (!document.querySelector('script[src="/js/noise.js"]')) {
+              if (!document.querySelector('script[src="js/noise.js"]')) {
                 const script = document.createElement('script');
-                script.src = '/js/noise.js';
+                script.src = 'js/noise.js';
                 document.body.appendChild(script);
               }
 
@@ -32,7 +32,7 @@ if ('serviceWorker' in navigator) {
       const reg = await navigator.serviceWorker.getRegistration();
 
       if (!reg) {
-        const newReg = await navigator.serviceWorker.register('/js/service-worker.js');
+        const newReg = await navigator.serviceWorker.register('js/service-worker.js');
         console.log('[SW] Registered new service worker:', newReg);
       } else {
         console.log('[SW] Service worker already registered.');
