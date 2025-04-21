@@ -32,7 +32,7 @@ if ('serviceWorker' in navigator) {
       const reg = await navigator.serviceWorker.getRegistration();
 
       if (!reg) {
-        const newReg = await navigator.serviceWorker.register('js/service-worker.js');
+        const newReg = await navigator.serviceWorker.register('service-worker.js');
         console.log('[SW] Registered new service worker:', newReg);
       } else {
         console.log('[SW] Service worker already registered.');
