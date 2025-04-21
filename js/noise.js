@@ -322,7 +322,7 @@ async function handleColoredNoise() {
     if (type === 'none') return;
     if (!["white", "pink", "brown"].includes(type)) return;
 
-    await state.audioCtx.audioWorklet.addModule(`/js/${type}-noise-processor.js`);
+    await state.audioCtx.audioWorklet.addModule(`js/${type}-noise-processor.js`);
     const workletNode = new AudioWorkletNode(state.audioCtx, `${type}-noise-processor`, {
         outputChannelCount: [2]
     });
@@ -477,7 +477,7 @@ function fetchAndCacheReverb() {
 
     const presetSelect = getEl("reverbSelect");
     const preset = presetSelect.value;
-    const presetUrl = `./irs/${preset}.mp3`
+    const presetUrl = `irs/${preset}.mp3`
 
     fetch(presetUrl)
         .then(res => res.arrayBuffer())
@@ -525,7 +525,7 @@ function handleAmbientLayer() {
     if (state.ambianceType === "none") return;
     console.log({ ambianceType: state.ambianceType })
 
-    const file = `./tracks/${state.ambianceType}.mp3`;
+    const file = `tracks/${state.ambianceType}.mp3`;
 
     if (state.ambientBufferCache[state.ambianceType]) {
         playAmbient(state.ambientBufferCache[state.ambianceType]);
