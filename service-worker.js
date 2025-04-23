@@ -14,8 +14,8 @@ const urlsToCache = [
   './js/white-noise-processor.js',
   './js/pink-noise-processor.js',
   './js/brown-noise-processor.js',
-  'https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.css',
-  'https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.js'
+  './vendor/framework7-bundle.min.css',
+  './vendor/framework7-bundle.min.js'
 ];
 
 self.addEventListener('install', event => {
