@@ -26,15 +26,30 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  console.log('fetch', event.request)
   event.respondWith(
     caches.match(event.request)
       .then(response => response || fetch(event.request))
       .catch(() => {
         // Optional fallback if both cache and network fail
         if (event.request.destination === 'document') {
-          return caches.match('index.html');
+          return caches.match('offline.html');
+        } else {
+          console.error(`Failed to fetch: ${event.request}`)
         }
       })
+  );
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      )
+    )
   );
 });
