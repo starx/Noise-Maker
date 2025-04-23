@@ -484,6 +484,10 @@ function fetchAndCacheReverb() {
         .then(buf => {
             console.log('preset reverb data retrived. caching');
             state.cacheReverbData = buf;
+        })
+        .catch(err => {
+            console.error('Failed to load or decode reverb audio:', err);
+            app.dialog.alert('Unable to load reverb sound. Please try again.', 'Audio Error');
         });
 
 }
@@ -536,6 +540,10 @@ function handleAmbientLayer() {
             .then(decoded => {
                 state.ambientBufferCache[state.ambianceType] = decoded;
                 playAmbient(decoded);
+            })
+            .catch(err => {
+                console.error('Failed to load or decode ambiance audio:', err);
+                app.dialog.alert('Unable to load ambiance sound. Please try again.', 'Audio Error');
             });
     }
 }
